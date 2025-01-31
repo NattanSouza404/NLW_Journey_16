@@ -1,3 +1,5 @@
-Participação da NLW Journey, que ocorreu nos dias 08 a 15/07/2024.
+**NLW Journey 16 - 08 a 15/07/2024**
 
-O projeto escolhido foi a trilha de HTML, CSS e JS. A ideia foi criar um site de roteiro de viagens.
+Nesse projeto, escolhi a trilha HTML, CSS e JS, criando um site de roteiro de viagens.
+
+![image](https://github.com/user-attachments/assets/e48fb634-e24c-44ad-94d6-33466a655e4b)
