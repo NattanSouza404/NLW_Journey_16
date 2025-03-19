@@ -1,7 +1,7 @@
 ## Site de Roteiro de Viagens
 Projeto criado na 16ª NLW Journey da Rocketseat, que ocorreu entre os dias 8 à 15 de julho de 2024.
 
-Acesse o site [AQUI](https://ethanhueh.github.io/NLW_Journey_16/).
+Acesse o site [AQUI](https://nattansouza404.github.io/NLW_Journey_16/).
 
 Tecnologias utilizadas:
 - HTML para criar a estrutura base
