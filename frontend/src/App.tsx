@@ -1,37 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 import { AtividadeSalva } from './componentes/AtividadeSalva';
 import { IconeAtividade, IconeData, IconeHora, IconeLocal } from './componentes/Icones';
 import { SelecaoDias } from './componentes/SelecaoDias';
 import { SelecaoHoras } from './componentes/SelecaoHoras';
 import type { Atividade } from './model/Atividade';
+import { consultarTodos } from './api/mock_api/mock_api';
 
 let id = 4;
 
 function App() {
 
   const [atividades, setAtividades] = useState<Atividade[]>(
-    [
-      {
-        id: 1,
-        nome: "Almoço",
-        data: new Date("2024-07-08 10:00"),
-        finalizada: true
-      },
-      {
-        id: 2,
-        nome: "Academia",
-        data: new Date("2024-07-09 12:00"),
-        finalizada: false
-      },
-      {
-        id: 3,
-        nome: "Gaming session",
-        data: new Date("2024-07-09 16:00"),
-        finalizada: false
-      }
-    ]
+    []
   );
+
+  useEffect(() => {
+    const obterDados = async () => {
+      const dados = await consultarTodos();
+
+      if (dados !== undefined){
+          setAtividades(dados);    
+      }
+        
+    };
+
+    obterDados();
+  }, []);
 
   const salvarAtividade = (event:React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
