@@ -52,8 +52,8 @@ function App() {
     }
 
     const atividadeExiste = atividades.find((atividade) => {
-      return atividade.data === new Date(novaAtividade.data);
-    })
+      return atividade.data.getTime() == novaAtividade.data.getTime();
+    });
 
     if (atividadeExiste){
       alert('Dia/Hora não disponível!');
