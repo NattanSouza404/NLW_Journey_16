@@ -3,14 +3,14 @@ Projeto originalmente criado na 16ª NLW Journey da Rocketseat, que ocorreu do d
 
 Trata-se de um planejador de viagens, onde é possível registrar atividades (nome, data e status de conclusão).
 
+### Demonstração
+![Demo](docs/demonstracao.gif)
+
 ## Tecnologias utilizadas:
 - React com Typescript
 - ASP.NET 8.0
 - Entity Framework Core
 - Day.js para formatação de datas
-
-### Demonstração
-![Demo](docs/demonstracao.gif)
 
 ### Iniciando o projeto
 
