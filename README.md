@@ -1,12 +1,56 @@
 ## Site de Roteiro de Viagens
-Projeto criado na 16ª NLW Journey da Rocketseat, que ocorreu entre os dias 8 à 15 de julho de 2024.
+Projeto originalmente criado na 16ª NLW Journey da Rocketseat, que ocorreu do dia 8 a 15 de julho de 2024. Inicialmente o projeto contava apenas com HTML, CSS e JS, mas agora foi refeito com novas tecnologias.
 
-Acesse o site [AQUI](https://nattansouza404.github.io/NLW_Journey_16/).
-
-Tecnologias utilizadas:
-- HTML para criar a estrutura base
-- CSS para estiliação da interface
-- Javascript para deixar a página dinâmica 
-- Day.js para formatar datas
+Trata-se de um planejador de viagens, onde é possível registrar atividades (nome, data e status de conclusão).
 
 ![image](https://github.com/user-attachments/assets/e48fb634-e24c-44ad-94d6-33466a655e4b)
+
+Tecnologias utilizadas:
+- React com Typescript
+- ASP.NET 8.0
+- Entity Framework Core
+- Day.js para formatação de datas
+
+### Iniciando o projeto
+
+Obs.: Esses comandos foram usados especificamente no Linux.
+
+Para iniciar o frontend:
+```
+cd frontend
+
+npm install
+npm run dev
+```
+
+- Instalando ASP.NET e dependências:
+```
+sudo apt-get install -y dotnet-sdk-8.0
+sudo apt-get install -y aspnetcore-runtime-8.0
+
+cd backend/
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+```
+
+Para criar o banco:
+```
+cd backend/
+dotnet tool install --global dotnet-ef
+
+dotnet ef migrations add CriarTabelas
+dotnet ef database update
+```
+
+### Comandos para criação do projeto
+
+- Criação do projeto React
+```
+npm create vite@latest frontend -- --template react-ts
+```
+
+- Criando projeto ASP.NET:
+```
+dotnet new webapp -n backend
+```
