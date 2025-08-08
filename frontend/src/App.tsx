@@ -5,7 +5,7 @@ import { IconeAtividade, IconeData, IconeHora, IconeLocal } from './componentes/
 import { SelecaoDias } from './componentes/SelecaoDias';
 import { SelecaoHoras } from './componentes/SelecaoHoras';
 import type { Atividade } from './model/Atividade';
-import { consultarTodos } from './api/mock_api/mock_api';
+import { consultarTodasAtividades } from './api/api';
 
 let id = 4;
 
@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     const obterDados = async () => {
-      const dados = await consultarTodos();
+      const dados = await consultarTodasAtividades();
 
       if (dados !== undefined){
           setAtividades(dados);    

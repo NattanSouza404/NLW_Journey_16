@@ -12,7 +12,22 @@ builder.Services.AddScoped<IAtividadeRepository, AtividadeRepository>();
 //builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        name: "PermitirOrigemFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        }
+    );
+});
+
 var app = builder.Build();
+
+app.UseCors("PermitirOrigemFrontend");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
