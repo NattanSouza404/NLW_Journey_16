@@ -55,3 +55,6 @@ npm create vite@latest frontend -- --template react-ts
 ```
 dotnet new webapp -n backend
 ```
+
+### Referências
+- Postagem: [NLW Journey - Rocket Seat](https://www.rocketseat.com.br/blog/artigos/post/por-que-nlw-e-especial)
