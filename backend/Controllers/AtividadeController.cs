@@ -37,7 +37,10 @@ namespace backend.Controllers
         public async Task<IActionResult> Adicionar([FromBody] Atividade atividade)
         {
             atividade.Data = DateTime.SpecifyKind(atividade.Data, DateTimeKind.Utc);
-            return Ok(await _repository.CriarAsync(atividade));
+
+            Atividade novaAtividade = await _repository.CriarAsync(atividade);
+
+            return CreatedAtAction(nameof(ConsultarPorId), new { id = novaAtividade.Id }, novaAtividade);
         }
     }
 }

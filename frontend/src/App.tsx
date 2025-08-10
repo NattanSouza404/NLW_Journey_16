@@ -5,9 +5,7 @@ import { IconeAtividade, IconeData, IconeHora, IconeLocal } from './componentes/
 import { SelecaoDias } from './componentes/SelecaoDias';
 import { SelecaoHoras } from './componentes/SelecaoHoras';
 import type { Atividade } from './model/Atividade';
-import { consultarTodasAtividades } from './api/api';
-
-let id = 4;
+import { adicionarAtividade, consultarTodasAtividades } from './api/api';
 
 function App() {
 
@@ -28,7 +26,7 @@ function App() {
     obterDados();
   }, []);
 
-  const salvarAtividade = (event:React.FormEvent<HTMLFormElement>) => {
+  const salvarAtividade = async (event:React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const form = event.target as HTMLFormElement;
@@ -44,8 +42,8 @@ function App() {
     const hora = dadosFormulario.get('hora');
     const data = `${dia} ${hora}`;
 
-    const novaAtividade: Atividade = {
-      id: id++,
+    const novaAtividade : Atividade = {
+      id: 0,
       nome: nome,
       data: new Date(data),
       finalizada: false
@@ -60,7 +58,13 @@ function App() {
       return;
     }
 
-    setAtividades(atividades => [...atividades, novaAtividade]);
+    try {
+      const atividadeInserida = await adicionarAtividade(novaAtividade);
+      setAtividades(atividades => [...atividades, atividadeInserida]);
+    } catch (error){
+      alert(error);
+    }
+    
   }
 
   const concluirAtividade = (atividade:Atividade) => {
