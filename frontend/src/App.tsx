@@ -5,7 +5,7 @@ import { IconeAtividade, IconeData, IconeHora, IconeLocal } from './componentes/
 import { SelecaoDias } from './componentes/SelecaoDias';
 import { SelecaoHoras } from './componentes/SelecaoHoras';
 import type { Atividade } from './model/Atividade';
-import { adicionarAtividade, consultarTodasAtividades } from './api/api';
+import { adicionarAtividade, atualizarAtividade, consultarTodasAtividades } from './api/api';
 
 function App() {
 
@@ -67,13 +67,21 @@ function App() {
     
   }
 
-  const concluirAtividade = (atividade:Atividade) => {
-    const novasAtividades = atividades.map(a =>
-    a.id === atividade.id
-      ? { ...a, finalizada: !a.finalizada }
-      : a
-    );
-    setAtividades(novasAtividades);
+  const concluirAtividade = async (atividade:Atividade) => {
+    try {
+      atividade.finalizada = !atividade.finalizada;
+      const atividadeAtualizada = await atualizarAtividade(atividade);
+
+      const novasAtividades = atividades.map(a =>
+      a.id === atividadeAtualizada.id
+        ? { ...a, a }
+        : a
+      );
+      setAtividades(novasAtividades);
+    } catch (error){
+      alert(error);
+    }
+    
   }
   
   return (

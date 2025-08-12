@@ -28,8 +28,23 @@ export const adicionarAtividade = async (atividade: Atividade) => {
     const resposta = await fetch(PATH, option);
 
     if (resposta.status !== 201) {
-        const objeto = await resposta.json()
-        throw new Error(objeto);
+        throw new Error("Erro ao adicionar atividade.");
+    }
+
+    return atividade;
+}
+
+export const atualizarAtividade = async (atividade: Atividade) => {
+    const option = {
+        method: 'PUT',
+        headers:{'Content-Type': 'application/json'},
+        body: JSON.stringify(atividade)
+    }
+
+    const resposta = await fetch(PATH, option);
+
+    if (resposta.status !== 204) {
+        throw new Error("Erro ao atualizar atividade.");
     }
 
     return atividade;
