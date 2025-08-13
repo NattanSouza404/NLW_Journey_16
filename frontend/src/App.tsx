@@ -5,7 +5,7 @@ import { IconeAtividade, IconeData, IconeHora, IconeLocal } from './componentes/
 import { SelecaoDias } from './componentes/SelecaoDias';
 import { SelecaoHoras } from './componentes/SelecaoHoras';
 import type { Atividade } from './model/Atividade';
-import { adicionarAtividade, atualizarAtividade, consultarTodasAtividades } from './api/api';
+import { adicionarAtividade, atualizarAtividade, consultarTodasAtividades, deletarAtividade } from './api/api';
 
 function App() {
 
@@ -83,6 +83,22 @@ function App() {
     }
     
   }
+
+  const confirmarDelecaoAtividade = async (id: number) => {
+  
+      if (!confirm("Deseja deletar essa atividade?")){
+          return;
+      }
+  
+      try {
+          await deletarAtividade(id);
+          const novasAtividades = atividades.filter((a) => a.id != id);
+          setAtividades(novasAtividades);
+      } catch (error){
+          alert(error);
+      }
+      
+  }
   
   return (
     <>
@@ -124,6 +140,7 @@ function App() {
                           atividade={atividade}
                           key={index}
                           concluirAtividade={() => concluirAtividade(atividade)}
+                          confirmarDelecaoAtividade={() => confirmarDelecaoAtividade(atividade.id)}
                         />
                     ))
                     

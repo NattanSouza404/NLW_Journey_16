@@ -170,6 +170,29 @@ button {
   color: #132F00;
 }
 
+.container-atividade {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  
+  justify-content: center;
+  align-content: center;
+
+  width: 100%;
+  max-width: 100%;
+}
+
+.deletar-atividade {
+  width: fit-content;
+  cursor: pointer;
+  background-color: unset;
+  color: white;
+
+  width: 5%;
+  margin-top: 0px;
+}
+
 .card-bg {
   background: #18181B;
 
@@ -182,6 +205,8 @@ button {
     inset 0px 1px 0px rgba(255, 255, 255, 0.03);
 
   border-radius: 12px;
+
+  width: 95%;
 }
 
 /* main */
