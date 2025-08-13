@@ -9,7 +9,7 @@ namespace backend.Repositories
 
         public async Task<IEnumerable<Atividade>> ConsultarTodosAsync()
         {
-            return await _context.Atividades.ToListAsync();
+            return await _context.Atividades.OrderBy(a => a.Data).ToListAsync();
         }
 
         public async Task<Atividade?> ConsultarPorIdAsync(int id)
