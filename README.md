@@ -11,6 +11,7 @@ Trata-se de um planejador de viagens, onde é possível registrar atividades (no
 - ASP.NET 8.0
 - Entity Framework Core
 - Day.js para formatação de datas
+- Banco PostgreSQL
 
 ### Iniciando o projeto
 
