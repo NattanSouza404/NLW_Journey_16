@@ -57,5 +57,18 @@ namespace backend.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Deletar(int id)
+        {
+            bool atividadeDeletada = await _repository.DeletarAsync(id);
+
+            if (!atividadeDeletada)
+            {
+                return BadRequest("Atividade não deletada.");
+            }
+
+            return NoContent();
+        }
     }
 }

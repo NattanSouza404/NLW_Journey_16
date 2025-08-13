@@ -49,3 +49,16 @@ export const atualizarAtividade = async (atividade: Atividade) => {
 
     return atividade;
 }
+
+export const deletarAtividade = async (id: number) => {
+    const option = {
+        method: 'DELETE',
+        headers:{'Content-Type': 'application/json'},
+    }
+
+    const resposta = await fetch(`${PATH}/${id}`, option);
+
+    if (resposta.status !== 204) {
+        throw new Error("Erro ao deletar atividade");
+    }
+}
