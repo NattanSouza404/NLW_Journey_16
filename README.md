@@ -13,6 +13,9 @@ Trata-se de um planejador de viagens, onde é possível registrar atividades (no
 - Day.js para formatação de datas
 - Banco PostgreSQL
 
+### Configurando o projeto
+A conexão padrão é a com o PostgreSQL. As configurações podem ser encontradas em backend/appsettings.json.
+
 ### Iniciando o projeto
 
 Obs.: Esses comandos foram usados especificamente no Linux.
@@ -24,6 +27,8 @@ cd frontend
 npm install
 npm run dev
 ```
+
+Obs.: Para acessar o site, navegue para ```localhost:5173```.
 
 - Instalando ASP.NET e dependências:
 ```
