@@ -1,4 +1,5 @@
 using backend.Repositories;
+using backend.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IAtividadeRepository, AtividadeRepository>();
+builder.Services.AddScoped<IAtividadeService, AtividadeService>();
 
 // Add services to the container.
 //builder.Services.AddRazorPages();

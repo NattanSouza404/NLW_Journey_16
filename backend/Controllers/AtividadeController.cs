@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using backend.Models;
-using backend.Repositories;
+using backend.Services;
 
 //using System.Web.Mvc;
 //using System.Web.Mvc.Ajax;
@@ -14,14 +14,14 @@ namespace backend.Controllers
 
     [ApiController]
     [Route("/api/[controller]")]
-    public class AtividadeController(IAtividadeRepository repository) : ControllerBase
+    public class AtividadeController(IAtividadeService service) : ControllerBase
     {
-        private readonly IAtividadeRepository _repository = repository;
+        private readonly IAtividadeService _service = service;
 
         [HttpGet]
         public async Task<IActionResult> ConsultarAtividades()
         {
-            IEnumerable<Atividade> atividades = await _repository.ConsultarTodosAsync();
+            IEnumerable<Atividade> atividades = await _service.ConsultarTodosAsync();
 
             return Ok(atividades); ;
         }
@@ -29,7 +29,7 @@ namespace backend.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> ConsultarPorId(int id)
         {
-            var atividade = await _repository.ConsultarPorIdAsync(id);
+            var atividade = await _service.ConsultarPorIdAsync(id);
             return Ok(atividade);
         }
 
@@ -38,7 +38,7 @@ namespace backend.Controllers
         {
             atividade.Data = DateTime.SpecifyKind(atividade.Data, DateTimeKind.Utc);
 
-            Atividade novaAtividade = await _repository.CriarAsync(atividade);
+            Atividade novaAtividade = await _service.CriarAsync(atividade);
 
             return CreatedAtAction(nameof(ConsultarPorId), new { id = novaAtividade.Id }, novaAtividade);
         }
@@ -48,7 +48,7 @@ namespace backend.Controllers
         {
             atividade.Data = DateTime.SpecifyKind(atividade.Data, DateTimeKind.Utc);
 
-            bool isAtualizado = await _repository.AtualizarAsync(atividade);
+            bool isAtualizado = await _service.AtualizarAsync(atividade);
 
             if (!isAtualizado)
             {
@@ -61,7 +61,7 @@ namespace backend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deletar(int id)
         {
-            bool atividadeDeletada = await _repository.DeletarAsync(id);
+            bool atividadeDeletada = await _service.DeletarAsync(id);
 
             if (!atividadeDeletada)
             {
