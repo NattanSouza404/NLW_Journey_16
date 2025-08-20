@@ -31,7 +31,7 @@ export const adicionarAtividade = async (atividade: Atividade) => {
         throw new Error("Erro ao adicionar atividade.");
     }
 
-    return atividade;
+    return resposta.json();
 }
 
 export const atualizarAtividade = async (atividade: Atividade) => {
