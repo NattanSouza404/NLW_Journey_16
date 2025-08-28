@@ -1,15 +1,17 @@
 using backend.Models;
 using backend.Repositories;
+using backend.Validators;
 
 namespace backend.Services
 {
-    public class AtividadeService(IAtividadeRepository repository) : IAtividadeService
+    public class AtividadeService(IAtividadeRepository repository, IValidator<Atividade> validator) : IAtividadeService
     {
         private readonly IAtividadeRepository _repository = repository;
+        private readonly IValidator<Atividade> _validator = validator;
         
         public async Task<IEnumerable<Atividade>> ConsultarTodosAsync()
         {
-            return await _repository.ConsultarTodosAsync();;
+            return await _repository.ConsultarTodosAsync(); ;
         }
 
         public async Task<Atividade?> ConsultarPorIdAsync(int id)
@@ -19,11 +21,15 @@ namespace backend.Services
 
         public async Task<Atividade> CriarAsync(Atividade atividade)
         {
+            _validator.Validar(atividade);
+
             return await _repository.CriarAsync(atividade);
         }
 
         public async Task<bool> AtualizarAsync(Atividade atividade)
         {
+            _validator.Validar(atividade);
+
             return await _repository.AtualizarAsync(atividade);
         }
 
