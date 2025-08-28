@@ -1,4 +1,8 @@
+using backend.Models;
 using backend.Repositories;
+using backend.Services;
+using backend.Validators;
+using backend.Validators.Impl.AtividadeValidator;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +11,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IAtividadeRepository, AtividadeRepository>();
+builder.Services.AddScoped<IAtividadeService, AtividadeService>();
+builder.Services.AddScoped<DataValidator>();
+builder.Services.AddScoped<IValidator<Atividade>>(sp =>
+    new AtividadeValidator([
+        sp.GetRequiredService<DataValidator>(),
+        // add more validators here later
+    ]));
 
 // Add services to the container.
 //builder.Services.AddRazorPages();
