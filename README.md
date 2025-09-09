@@ -14,16 +14,15 @@ Trata-se de um planejador de viagens, onde é possível registrar atividades (no
 - Banco PostgreSQL
 
 ### Configurando o projeto
-A conexão padrão é a com o PostgreSQL. As configurações podem ser encontradas em backend/appsettings.json.
+A conexão padrão é a com o PostgreSQL. As configurações podem ser encontradas em Backend/appsettings.json.
 
 ### Iniciando o projeto
 
 Obs.: Esses comandos foram usados especificamente no Linux.
 
-Para iniciar o frontend:
+- Para iniciar o frontend:
 ```
 cd frontend
-
 npm install
 npm run dev
 ```
@@ -34,20 +33,20 @@ Obs.: Para acessar o site, navegue para ```localhost:5173```.
 ```
 sudo apt-get install -y dotnet-sdk-8.0
 sudo apt-get install -y aspnetcore-runtime-8.0
-
-cd backend/
-dotnet add package Microsoft.EntityFrameworkCore
-dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
 ```
 
-Para criar o banco:
+- Para criar o banco:
 ```
-cd backend/
+cd Backend/
 dotnet tool install --global dotnet-ef
 
 dotnet ef migrations add CriarTabelas
 dotnet ef database update
+```
+
+- Para rodar os testes:
+```
+dotnet test
 ```
 
 ### Comandos para criação do projeto
@@ -59,7 +58,27 @@ npm create vite@latest frontend -- --template react-ts
 
 - Criando projeto ASP.NET:
 ```
-dotnet new webapp -n backend
+# Criando projeto webapp
+dotnet new webapp -n Backend
+
+# Adicionando pacotes
+cd Backend/
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+
+# Criando testes
+cd ..
+dotnet new xunit -n Backend.Tests
+dotnet sln add Backend.Tests/Backend.Tests.csproj
+dotnet add Backend.Tests/Backend.Tests.csproj reference Backend/Backend.csproj
+
+# Adicionando pacotes dos testes
+cd Backend.Tests/
+dotnet add package xunit
+dotnet add package xunit.runner.visualstudio
+dotnet add package Microsoft.NET.Test.Sdk
+dotnet add package Moq
 ```
 
 ### Referências

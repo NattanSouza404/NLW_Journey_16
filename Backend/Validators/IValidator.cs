@@ -1,4 +1,4 @@
-namespace backend.Validators
+namespace Backend.Validators
 {
     public interface IValidator<T>
     {

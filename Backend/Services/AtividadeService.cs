@@ -1,8 +1,8 @@
-using backend.Models;
-using backend.Repositories;
-using backend.Validators;
+using Backend.Models;
+using Backend.Repositories;
+using Backend.Validators;
 
-namespace backend.Services
+namespace Backend.Services
 {
     public class AtividadeService(IAtividadeRepository repository, IValidator<Atividade> validator) : IAtividadeService
     {

@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using backend.Models;
-using backend.Services;
+using Backend.Models;
+using Backend.Services;
 
 //using System.Web.Mvc;
 //using System.Web.Mvc.Ajax;
 using Microsoft.AspNetCore.Mvc;
 
-namespace backend.Controllers
+namespace Backend.Controllers
 {
 
     [ApiController]

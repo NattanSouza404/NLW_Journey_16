@@ -1,6 +1,6 @@
-using backend.Models;
+using Backend.Models;
 
-namespace backend.Validators.Impl.AtividadeValidator
+namespace Backend.Validators.Impl.AtividadeValidator
 {
     public class AtividadeValidator(IEnumerable<IValidator<Atividade>> validators) : IValidator<Atividade>
     {
