@@ -1,8 +1,8 @@
-using backend.Models;
-using backend.Repositories;
-using backend.Services;
-using backend.Validators;
-using backend.Validators.Impl.AtividadeValidator;
+using Backend.Models;
+using Backend.Repositories;
+using Backend.Services;
+using Backend.Validators;
+using Backend.Validators.Impl.AtividadeValidator;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
