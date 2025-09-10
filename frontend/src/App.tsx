@@ -84,6 +84,30 @@ function App() {
     
   }
 
+  const confirmarAtualizarNome = async (atividade: Atividade) => {
+    
+    try {
+      const novoNome = prompt(`Mudar nome de atividade ${atividade.nome} para:`, atividade.nome);
+
+      if (novoNome === null || novoNome.length === 0){
+        return;
+      }
+
+      atividade.nome = novoNome;
+      
+      const atividadeAtualizada = await atualizarAtividade(atividade);;
+
+      const novasAtividades = atividades.map(a =>
+      a.id === atividadeAtualizada.id
+        ? { ...a, a }
+        : a
+      );
+      setAtividades(novasAtividades);
+    } catch (error){
+      alert(error);
+    }
+  }
+
   const confirmarDelecaoAtividade = async (id: number) => {
   
       if (!confirm("Deseja deletar essa atividade?")){
@@ -141,6 +165,7 @@ function App() {
                           key={index}
                           concluirAtividade={() => concluirAtividade(atividade)}
                           confirmarDelecaoAtividade={() => confirmarDelecaoAtividade(atividade.id)}
+                          confirmarAtualizarNome={() => confirmarAtualizarNome(atividade)}
                         />
                     ))
                     

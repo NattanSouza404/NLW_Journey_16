@@ -6,10 +6,11 @@ import { IconeAtividadeConcluida, IconeAtividadeNaoConcluida } from "./Icones"
 type Props = {
     atividade: Atividade,
     concluirAtividade: ChangeEventHandler<HTMLInputElement>,
-    confirmarDelecaoAtividade: (id:number) => Promise<void>
+    confirmarDelecaoAtividade: (id:number) => Promise<void>,
+    confirmarAtualizarNome: (atividade:Atividade) => Promise<void>
 }
 
-export const AtividadeSalva = ( { atividade, concluirAtividade, confirmarDelecaoAtividade }: Props ) => {
+export const AtividadeSalva = ( { atividade, concluirAtividade, confirmarDelecaoAtividade, confirmarAtualizarNome }: Props ) => {
 
     const formatar = Formatador(atividade.data);
 
@@ -36,6 +37,18 @@ export const AtividadeSalva = ( { atividade, concluirAtividade, confirmarDelecao
                     {formatar.dia.semana.longo}, dia {formatar.dia.numerico} de {formatar.mes} às {formatar.hora}hs
                 </time>
             </div>
+
+            <button
+                type="button"
+                className="deletar-atividade"
+
+                onClick={(e) => {
+                    e.stopPropagation();
+                    confirmarAtualizarNome(atividade);
+                }}
+            >
+                ✏️
+            </button>
             
             <button
                 type="button"
