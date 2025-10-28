@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import './App.css'
 import { AtividadeSalva } from './componentes/AtividadeSalva';
-import { IconeAtividade, IconeData, IconeHora, IconeLocal } from './componentes/Icones';
-import { SelecaoDias } from './componentes/SelecaoDias';
-import { SelecaoHoras } from './componentes/SelecaoHoras';
 import type { Atividade } from './model/Atividade';
 import { adicionarAtividade, atualizarAtividade, consultarTodasAtividades, deletarAtividade } from './api/api';
+import { FormAdicionarAtividade } from './componentes/FormAdicionarAtividade';
 
 function App() {
 
@@ -127,32 +125,11 @@ function App() {
   return (
     <>
       <div id="app">
-            <form onSubmit={salvarAtividade} id="form-adicionar-atividade">
-                <div id="place" className="card-bg">
-                    <IconeLocal/>
-                    Florianópolis, SC
-                </div>
-                <div className="fields">
-                    <div className="field-wrapper">
-                        <IconeAtividade/>
-                        <input
-                            name="atividade"
-                            type="text"
-                            placeholder="Qual a atividade?"
-                            required
-                        />
-                    </div>
-                    <div className="field-wrapper">
-                        <IconeData/>
-                        <SelecaoDias/>
-                    </div>
-                    <div className="field-wrapper">
-                        <IconeHora/>
-                        <SelecaoHoras/>
-                    </div>
-                </div>
-                <button>Salvar atividade</button>
-            </form>
+
+            <FormAdicionarAtividade
+              onSubmit={salvarAtividade}
+            />
+
             <main>
                 <h1>Atividades</h1>
                 <section>
