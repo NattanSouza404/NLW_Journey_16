@@ -1,7 +1,8 @@
 import type { ChangeEventHandler } from "react"
 import type { Atividade } from "../model/Atividade"
 import { Formatador } from "../utils/Formatador"
-import { IconeAtividadeConcluida, IconeAtividadeNaoConcluida } from "./Icones"
+import { IconeAtividadeConcluida } from "./icones/IconeAtividadeConcluida"
+import { IconeAtividadeNaoConcluida } from "./icones/IconeAtividadeNaoConcluida"
 
 type Props = {
     atividade: Atividade,

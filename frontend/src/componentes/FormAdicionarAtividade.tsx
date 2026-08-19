@@ -1,4 +1,7 @@
-import { IconeAtividade, IconeData, IconeHora, IconeLocal } from "./Icones";
+import { IconeAtividade } from "./icones/IconeAtividade";
+import { IconeData } from "./icones/IconeData";
+import { IconeHora } from "./icones/IconeHora";
+import { IconeLocal } from "./icones/IconeLocal";
 import { SelecaoDias } from "./SelecaoDias";
 import { SelecaoHoras } from "./SelecaoHoras";
 
