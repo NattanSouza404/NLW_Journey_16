@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { IconeAtividade } from "./icones/IconeAtividade";
 import { IconeData } from "./icones/IconeData";
 import { IconeHora } from "./icones/IconeHora";
@@ -6,12 +7,22 @@ import { SelecaoDias } from "./SelecaoDias";
 import { SelecaoHoras } from "./SelecaoHoras";
 
 type Props = {
-    onSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void> 
+    onSubmit: (nome: string, data: string) => Promise<void> 
 }
 
 export const FormAdicionarAtividade = ({onSubmit: salvarAtividade}: Props) => {
+    const [nome, setNome] = useState<string>("");
+    const [dia, setDia] = useState<string>("");
+    const [hora, setHora] = useState<string>("");
+
     return (
-        <form onSubmit={salvarAtividade} id="form-adicionar-atividade">
+        <form
+            id="form-adicionar-atividade"
+            onSubmit={(e) => {
+                e.preventDefault();
+                salvarAtividade(nome, `${dia} ${hora}`);
+            }}
+        >
             <div id="place" className="card-bg">
                 <IconeLocal/>
                 Florianópolis, SC
@@ -25,15 +36,23 @@ export const FormAdicionarAtividade = ({onSubmit: salvarAtividade}: Props) => {
                         type="text"
                         placeholder="Qual a atividade?"
                         required
+                        value={nome}
+                        onChange={(e) => setNome(e.target.value)}
                     />
                 </div>
                 <div className="field-wrapper">
                     <IconeData/>
-                    <SelecaoDias/>
+                    <SelecaoDias
+                        dia={dia}
+                        setDia={setDia}
+                    />
                 </div>
                 <div className="field-wrapper">
                     <IconeHora/>
-                    <SelecaoHoras/>
+                    <SelecaoHoras
+                        hora={hora}
+                        setHora={setHora}
+                    />
                 </div>
             </div>
             <button>Salvar atividade</button>

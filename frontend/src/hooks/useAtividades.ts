@@ -22,22 +22,7 @@ export const useAtividades = () => {
     obterDados();
   }, []);
 
-  const salvarAtividade = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const form = event.target as HTMLFormElement;
-
-    if (!form) {
-      return;
-    }
-
-    const dadosFormulario = new FormData(form);
-
-    const nome = dadosFormulario.get("atividade")?.toString();
-    const dia = dadosFormulario.get("dia");
-    const hora = dadosFormulario.get("hora");
-    const data = `${dia} ${hora}`;
-
+  const salvarAtividade = async (nome: string, data: string) => {
     const novaAtividade: Atividade = {
       id: 0,
       nome: nome,
@@ -120,5 +105,5 @@ export const useAtividades = () => {
     confirmarDelecaoAtividade,
     salvarAtividade,
     concluirAtividade
-};
+  };
 };

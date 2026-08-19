@@ -1,6 +1,11 @@
 import type { ReactElement } from "react";
 
-export const SelecaoHoras = () => {
+type Props = {
+    hora: string;
+    setHora: (novaHora: string) => void;
+}
+
+export const SelecaoHoras = ({ hora, setHora }: Props) => {
   const opcoesHorasDisponiveis:ReactElement[] = [];
 
   let contagem = 0;
@@ -9,21 +14,27 @@ export const SelecaoHoras = () => {
     let stringFormatada = `${hora}:00`;
 
     opcoesHorasDisponiveis.push(
-      <option key={contagem++}value={stringFormatada}>{stringFormatada}</option>
+      <option key={contagem++}value={stringFormatada}>
+        {stringFormatada}
+      </option>
     );
 
     stringFormatada = `${hora}:30`;
 
     opcoesHorasDisponiveis.push(
-      <option key={contagem++} value={stringFormatada}>{stringFormatada}</option>
+      <option key={contagem++} value={stringFormatada}>
+        {stringFormatada}
+      </option>
     );
-
   }
   
   return (
-    <select name='hora'>
+    <select
+      name='hora'
+      value={hora}
+      onChange={(e) => setHora(e.target.value)}
+    >
       { opcoesHorasDisponiveis }
     </select>
-  )
-
+  );
 }

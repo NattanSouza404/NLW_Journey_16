@@ -16,9 +16,7 @@ function App() {
   return (
     <>
       <div id="app">
-        <FormAdicionarAtividade
-          onSubmit={salvarAtividade}
-        />
+        <FormAdicionarAtividade onSubmit={salvarAtividade}/>
 
         <main>
           <h1>Atividades</h1>
