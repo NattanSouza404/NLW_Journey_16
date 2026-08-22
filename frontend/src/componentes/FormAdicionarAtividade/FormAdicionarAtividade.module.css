@@ -1,0 +1,31 @@
+#place {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  line-height: 120%;
+
+  padding: 22px 16px;
+  margin-bottom: 32px;
+}
+
+.fields {
+  display: grid;
+  gap: 8px;
+}
+
+.fieldWrapper {
+  padding: 18px;
+  background-color: #09090B;
+  border: 1px solid #27272A;
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fieldWrapper:focus-within {
+  outline: 2px solid yellowgreen;
+}

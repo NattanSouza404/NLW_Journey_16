@@ -1,8 +1,10 @@
 import type { ChangeEventHandler } from "react"
-import type { Atividade } from "../model/Atividade"
-import { Formatador } from "../utils/Formatador"
-import { IconeAtividadeConcluida } from "./icones/IconeAtividadeConcluida"
-import { IconeAtividadeNaoConcluida } from "./icones/IconeAtividadeNaoConcluida"
+import type { Atividade } from "../../model/Atividade"
+import { Formatador } from "../../utils/Formatador"
+import { IconeAtividadeConcluida } from "../icones/IconeAtividadeConcluida"
+import { IconeAtividadeNaoConcluida } from "../icones/IconeAtividadeNaoConcluida"
+
+import styles from './AtividadeSalva.module.css';
 
 type Props = {
     atividade: Atividade,
@@ -16,7 +18,7 @@ export const AtividadeSalva = ( { atividade, concluirAtividade, confirmarDelecao
     const formatar = Formatador(atividade.data);
 
     return (
-        <div className="container-atividade">
+        <div className={styles.containerAtividade}>
             <div className="card-bg">
                 <input
                     type="checkbox"
@@ -29,19 +31,19 @@ export const AtividadeSalva = ( { atividade, concluirAtividade, confirmarDelecao
                     <IconeAtividadeNaoConcluida/>
                     <span>{atividade.nome}</span>
                 </div>
-                <time className="short">
+                <time className={styles.short}>
                     {formatar.dia.semana.curto}.
                     {formatar.dia.numerico} <br/>
                     {formatar.hora}
                 </time>
-                <time className="full">
+                <time className={styles.full}>
                     {formatar.dia.semana.longo}, dia {formatar.dia.numerico} de {formatar.mes} às {formatar.hora}hs
                 </time>
             </div>
 
             <button
                 type="button"
-                className="deletar-atividade"
+                className={styles.btnAtividade}
 
                 onClick={(e) => {
                     e.stopPropagation();
@@ -53,7 +55,7 @@ export const AtividadeSalva = ( { atividade, concluirAtividade, confirmarDelecao
             
             <button
                 type="button"
-                className="deletar-atividade"
+                className={styles.btnAtividade}
                 onClick={(e) => {
                     e.stopPropagation();
                     confirmarDelecaoAtividade(atividade.id);

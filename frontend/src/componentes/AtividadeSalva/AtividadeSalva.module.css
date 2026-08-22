@@ -1,0 +1,42 @@
+.containerAtividade {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  
+  justify-content: center;
+  align-content: center;
+
+  width: 100%;
+  max-width: 100%;
+}
+
+.btnAtividade {
+  width: fit-content;
+  cursor: pointer;
+  background-color: unset;
+  color: white;
+
+  width: 5%;
+  margin-top: 0px;
+}
+
+time {
+  font-size: 14px;
+  color: #A1A1AB;
+  text-align: right;
+}
+
+time.full {
+  display: none;
+}
+
+@media (width > 1024px) {
+  time.short {
+    display: none;
+  }
+
+  time.full {
+    display: block;
+  }
+}

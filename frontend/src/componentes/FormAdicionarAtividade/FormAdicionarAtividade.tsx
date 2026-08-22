@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { IconeAtividade } from "./icones/IconeAtividade";
-import { IconeData } from "./icones/IconeData";
-import { IconeHora } from "./icones/IconeHora";
-import { IconeLocal } from "./icones/IconeLocal";
-import { SelecaoDias } from "./SelecaoDias";
-import { SelecaoHoras } from "./SelecaoHoras";
+import { IconeAtividade } from "../icones/IconeAtividade";
+import { IconeData } from "../icones/IconeData";
+import { IconeHora } from "../icones/IconeHora";
+import { IconeLocal } from "../icones/IconeLocal";
+import { SelecaoDias } from "../SelecaoDias";
+import { SelecaoHoras } from "../SelecaoHoras";
+
+import styles from './FormAdicionarAtividade.module.css';
 
 type Props = {
     onSubmit: (nome: string, data: string) => Promise<void> 
@@ -17,19 +19,18 @@ export const FormAdicionarAtividade = ({onSubmit: salvarAtividade}: Props) => {
 
     return (
         <form
-            id="form-adicionar-atividade"
             onSubmit={(e) => {
                 e.preventDefault();
                 salvarAtividade(nome, `${dia} ${hora}`);
             }}
         >
-            <div id="place" className="card-bg">
+            <div id={styles.place} className="card-bg">
                 <IconeLocal/>
                 Florianópolis, SC
             </div>
 
-            <div className="fields">
-                <div className="field-wrapper">
+            <div className={styles.fields}>
+                <div className={styles.fieldWrapper}>
                     <IconeAtividade/>
                     <input
                         name="atividade"
@@ -40,14 +41,14 @@ export const FormAdicionarAtividade = ({onSubmit: salvarAtividade}: Props) => {
                         onChange={(e) => setNome(e.target.value)}
                     />
                 </div>
-                <div className="field-wrapper">
+                <div className={styles.fieldWrapper}>
                     <IconeData/>
                     <SelecaoDias
                         dia={dia}
                         setDia={setDia}
                     />
                 </div>
-                <div className="field-wrapper">
+                <div className={styles.fieldWrapper}>
                     <IconeHora/>
                     <SelecaoHoras
                         hora={hora}
