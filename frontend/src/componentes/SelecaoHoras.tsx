@@ -1,40 +1,41 @@
-import type { ReactElement } from "react";
-
 type Props = {
-    hora: string;
-    setHora: (novaHora: string) => void;
+  hora: string;
+  setHora: (novaHora: string) => void;
 }
 
+const OPCOES_HORAS_DISPONIVEIS: string[] = gerarHorariosDisponiveis();
+
 export const SelecaoHoras = ({ hora, setHora }: Props) => {
-  const opcoesHorasDisponiveis:ReactElement[] = [];
-
-  let contagem = 0;
-  for (let i = 6; i < 23; i++){
-    const hora = String(i).padStart(2, '0');
-    let stringFormatada = `${hora}:00`;
-
-    opcoesHorasDisponiveis.push(
-      <option key={contagem++}value={stringFormatada}>
-        {stringFormatada}
-      </option>
-    );
-
-    stringFormatada = `${hora}:30`;
-
-    opcoesHorasDisponiveis.push(
-      <option key={contagem++} value={stringFormatada}>
-        {stringFormatada}
-      </option>
-    );
-  }
-  
   return (
     <select
       name='hora'
       value={hora}
       onChange={(e) => setHora(e.target.value)}
     >
-      { opcoesHorasDisponiveis }
+      {OPCOES_HORAS_DISPONIVEIS.map((opcao) => 
+        <option
+          key={opcao}
+          value={opcao}
+        >
+          {opcao}
+        </option>
+      )}
     </select>
   );
+}
+
+function gerarHorariosDisponiveis(): string[] {
+  const opcoesHorasDisponiveis: string[] = [];
+
+  for (let hora = 6; hora < 23; hora++) {
+    const horaFormatada = String(hora).padStart(2, '0');
+
+    for (const minuto of ['00', '30']) {
+      opcoesHorasDisponiveis.push(
+        `${horaFormatada}:${minuto}`
+      );
+    }
+  }
+
+  return opcoesHorasDisponiveis;
 }
