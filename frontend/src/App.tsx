@@ -1,5 +1,5 @@
-import { FormAdicionarAtividade } from "./componentes/FormAdicionarAtividade/FormAdicionarAtividade";
-import { ListaAtividades } from "./componentes/ListaAtividades/ListaAtividades";
+import { FormAdicionarAtividade } from "./components/FormAdicionarAtividade/FormAdicionarAtividade";
+import { ListaAtividades } from "./components/ListaAtividades/ListaAtividades";
 import { useAtividades } from "./hooks/useAtividades";
 
 import styles from "./App.module.css";

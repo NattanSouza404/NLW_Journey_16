@@ -1,7 +1,36 @@
-export const IconeAtividadeNaoConcluida = () => {
+type Props = {
+  finalizada: boolean;
+};
+
+export const IconeStatusAtividade = ({ finalizada }: Props) => {
+  return finalizada ? <IconeChecked /> : <IconeNotChecked />;
+}
+
+const IconeChecked = () => {
   return (
     <svg
-      className="inactive"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7.50008 10L9.16675 11.6667L12.5001 8.33335M18.3334 10C18.3334 14.6024 14.6025 18.3334 10.0001 18.3334C5.39771 18.3334 1.66675 14.6024 1.66675 10C1.66675 5.39765 5.39771 1.66669 10.0001 1.66669C14.6025 1.66669 18.3334 5.39765 18.3334 10Z"
+        stroke="#BEF264"
+        style={{stroke:'color(display-p3 0.7451 0.9490 0.3922)'}}
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeOpacity={1}
+      />
+    </svg>
+  )
+}
+
+const IconeNotChecked = () => {
+  return (
+    <svg
       width="20"
       height="20"
       viewBox="0 0 20 20"

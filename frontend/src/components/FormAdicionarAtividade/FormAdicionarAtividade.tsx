@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { IconeAtividade } from "../icones/IconeAtividade";
-import { IconeData } from "../icones/IconeData";
-import { IconeHora } from "../icones/IconeHora";
-import { IconeLocal } from "../icones/IconeLocal";
+import { IconeAtividade } from "../ui/icons/IconeAtividade";
+import { IconeData } from "../ui/icons/IconeData";
+import { IconeHora } from "../ui/icons/IconeHora";
+import { IconeLocal } from "../ui/icons/IconeLocal";
 import { SelecaoDias } from "../SelecaoDias";
 import { SelecaoHoras } from "../SelecaoHoras";
 
 import styles from './FormAdicionarAtividade.module.css';
+import { Card } from "../ui/Card/Card";
+import { Button } from "../ui/Button/Button";
 
 type Props = {
     onSubmit: (nome: string, data: string) => Promise<void> 
@@ -24,10 +26,10 @@ export const FormAdicionarAtividade = ({onSubmit: salvarAtividade}: Props) => {
                 salvarAtividade(nome, `${dia} ${hora}`);
             }}
         >
-            <div id={styles.place} className="card-bg">
+            <Card id={styles.place}>
                 <IconeLocal/>
                 Florianópolis, SC
-            </div>
+            </Card>
 
             <div className={styles.fields}>
                 <div className={styles.fieldWrapper}>
@@ -56,7 +58,7 @@ export const FormAdicionarAtividade = ({onSubmit: salvarAtividade}: Props) => {
                     />
                 </div>
             </div>
-            <button>Salvar atividade</button>
+            <Button type="submit">Salvar atividade</Button>
         </form>
     );
 }

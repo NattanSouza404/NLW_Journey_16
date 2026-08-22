@@ -22,83 +22,13 @@ button {
   letter-spacing: -0.02em;
 }
 
-/* form */
-input,
-select {
-  all: unset;
-}
-
 input, select {
+  all: unset;
   text-align: left;
 }
 
-input,
-select,
-button {
+input, select, button {
   width: 100%;
-}
-
-button {
-  margin-top: 12px;
-  border: none;
-  padding: 12px 20px;
-  background-color: #AFF445;
-  border-radius: 8px;
-
-  font-weight: 500;
-  font-size: 16px;
-
-  color: #132F00;
-}
-
-.card-bg {
-  background: #18181B;
-
-  box-shadow:
-    0px 8px 8px rgba(0, 0, 0, 0.1),
-    0px 4px 4px rgba(0, 0, 0, 0.1),
-    0px 2px 2px rgba(0, 0, 0, 0.1),
-    0px 0px 0px 1px rgba(0, 0, 0, 0.1),
-    inset 0px 0px 0px 1px rgba(255, 255, 255, 0.03),
-    inset 0px 1px 0px rgba(255, 255, 255, 0.03);
-
-  border-radius: 12px;
-
-  width: 95%;
-}
-
-/* main */
-section input[type="checkbox"] {
-  height: 100%;
-  position: absolute;
-}
-
-section .card-bg {
-  padding: 10px 16px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-section .card-bg:has(:checked) .active,
-section .card-bg .inactive {
-  display: block;
-}
-
-section .card-bg:has(:checked) .inactive,
-section .card-bg .active {
-  display: none;
-}
-
-section .card-bg div {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-section .card-bg {
-  animation: appear 300ms;
 }
 
 @keyframes appear {

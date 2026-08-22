@@ -21,6 +21,26 @@
   margin-top: 0px;
 }
 
+.cardAtividade {
+  padding: 10px 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: appear 300ms;
+}
+
+.subSecao {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.checkBoxInput {
+  height: 100%;
+  position: absolute;
+}
+
 time {
   font-size: 14px;
   color: #A1A1AB;
