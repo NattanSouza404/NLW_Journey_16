@@ -83,3 +83,4 @@ dotnet add package Moq
 
 ### Referências
 - Postagem: [NLW Journey - Rocket Seat](https://www.rocketseat.com.br/blog/artigos/post/por-que-nlw-e-especial)
+- Tutorial: [Net Ninja - Full React Tutorial](https://www.youtube.com/watch?v=j942wKiXFu8&list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d)

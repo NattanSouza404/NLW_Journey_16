@@ -1,7 +1,19 @@
 import dayjs from "dayjs";
 import 'dayjs/locale/pt-br';
 
-export const Formatador = (data: any) => {
+export type FormatoData = {
+  dia: {
+    numerico: string;
+    semana: {
+      curto: string;
+      longo: string;
+    };
+  };
+  mes: string;
+  hora: string;
+};
+
+export const Formatador = (data: any): FormatoData => {
     dayjs.locale('pt-br');
 
     return {
