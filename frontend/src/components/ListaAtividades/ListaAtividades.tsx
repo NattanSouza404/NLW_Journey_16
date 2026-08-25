@@ -17,14 +17,14 @@ export const ListaAtividades = ({
 }: Props) => {
   if (atividades.length === 0) {
     return (
-      <section>
+      <section className={styles.lista}>
         <p>Nenhuma atividade cadastrada.</p>
       </section>
     );
   }
 
   return (
-    <section className={styles.section}>
+    <section className={styles.lista}>
       {atividades.map((atividade) => (
         <AtividadeSalva
           key={atividade.id}

@@ -25,7 +25,6 @@ export const AtividadeSalva = ( { atividade, concluirAtividade, confirmarDelecao
                     className={styles.checkBoxInput}
                     type="checkbox"
                     checked={atividade.finalizada}
-                    value="Mon Jul 08 2024 10:00:00 GMT-0300 (Horário Padrão de Brasília)"
                     onChange={concluirAtividade}
                 />
                 <div className={styles.subSecao}>
@@ -36,9 +35,7 @@ export const AtividadeSalva = ( { atividade, concluirAtividade, confirmarDelecao
             </Card>
 
             <Button
-                type="button"
                 className={styles.btnAtividade}
-
                 onClick={(e) => {
                     e.stopPropagation();
                     confirmarAtualizarNome(atividade);
@@ -46,9 +43,8 @@ export const AtividadeSalva = ( { atividade, concluirAtividade, confirmarDelecao
             >
                 ✏️
             </Button>
-            
+
             <Button
-                type="button"
                 className={styles.btnAtividade}
                 onClick={(e) => {
                     e.stopPropagation();
