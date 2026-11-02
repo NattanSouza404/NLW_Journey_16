@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import {
   adicionarAtividade,
   atualizarAtividade,
+  atualizarFinalizacaoAtividade,
   consultarTodasAtividades,
   deletarAtividade,
-} from "../api/api";
+} from "../services/AtividadeService";
 import type { Atividade } from "../model/Atividade";
 
 export const useAtividades = () => {
@@ -47,14 +48,14 @@ export const useAtividades = () => {
     }
   };
 
-  const concluirAtividade = async (atividade: Atividade) => {
+  const concluirAtividade = async (id: number) => {
     try {
-      atividade.finalizada = !atividade.finalizada;
-      const atividadeAtualizada = await atualizarAtividade(atividade);
+      await atualizarFinalizacaoAtividade(id);
 
       const novasAtividades = atividades.map((a) =>
-        a.id === atividadeAtualizada.id ? { ...a, a } : a,
+        a.id === id ? { ...a, finalizada: !a.finalizada } : a,
       );
+
       setAtividades(novasAtividades);
     } catch (error) {
       alert(error);
@@ -74,10 +75,10 @@ export const useAtividades = () => {
 
       atividade.nome = novoNome;
 
-      const atividadeAtualizada = await atualizarAtividade(atividade);
+      await atualizarAtividade(atividade);
 
       const novasAtividades = atividades.map((a) =>
-        a.id === atividadeAtualizada.id ? { ...a, a } : a,
+        a.id === atividade.id ? { ...a, a } : a,
       );
       setAtividades(novasAtividades);
     } catch (error) {

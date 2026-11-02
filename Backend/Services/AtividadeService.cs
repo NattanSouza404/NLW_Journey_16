@@ -1,34 +1,72 @@
+using AutoMapper;
+using Backend.DTOs;
 using Backend.Models;
 using Backend.Repositories;
-using Backend.Validators;
 
 namespace Backend.Services
 {
-    public class AtividadeService(IAtividadeRepository repository, IValidator<Atividade> validator) : IAtividadeService
+    public class AtividadeService(
+        IAtividadeRepository repository,
+        IMapper mapper
+    ) : IAtividadeService
     {
         private readonly IAtividadeRepository _repository = repository;
-        private readonly IValidator<Atividade> _validator = validator;
+        private readonly IMapper _mapper = mapper;
         
-        public async Task<IEnumerable<Atividade>> ConsultarTodosAsync()
+        public async Task<IEnumerable<AtividadeDTO>> ConsultarTodosAsync()
         {
-            return await _repository.ConsultarTodosAsync(); ;
+            return _mapper.Map<IEnumerable<AtividadeDTO>>(
+                await _repository.ConsultarTodosAsync()
+            );
         }
 
-        public async Task<Atividade?> ConsultarPorIdAsync(int id)
+        public async Task<AtividadeDTO?> ConsultarPorIdAsync(int id)
         {
-            return await _repository.ConsultarPorIdAsync(id);
+            return _mapper.Map<AtividadeDTO>(
+                await _repository.ConsultarPorIdAsync(id)
+            );
         }
 
-        public async Task<Atividade> CriarAsync(Atividade atividade)
+        public async Task<AtividadeDTO> CriarAsync(CriarAtividadeDTO dto)
         {
-            _validator.Validar(atividade);
+            Atividade atividade = new(dto.Nome, dto.Data);
 
-            return await _repository.CriarAsync(atividade);
+            return _mapper.Map<AtividadeDTO>(
+                await _repository.CriarAsync(atividade)
+            );
         }
 
-        public async Task<bool> AtualizarAsync(Atividade atividade)
+        public async Task<bool> AtualizarAsync(int id, AtualizarAtividadeDTO dto)
         {
-            _validator.Validar(atividade);
+            Atividade? atividade = await _repository.ConsultarPorIdAsync(id);
+
+            if (atividade == null)
+            {
+                return false;
+            }
+
+            atividade.Atualizar(dto.Nome, dto.Data);
+
+            return await _repository.AtualizarAsync(atividade);
+        }
+
+        public async Task<bool> AtualizarFinalizacaoAsync(int id)
+        {
+            Atividade? atividade = await _repository.ConsultarPorIdAsync(id);
+
+            if (atividade == null)
+            {
+                return false;
+            }
+
+            if (atividade.Finalizada)
+            {
+                atividade.DesfazerFinalizacao();
+            }
+            else
+            {
+                atividade.Finalizar();
+            }
 
             return await _repository.AtualizarAsync(atividade);
         }

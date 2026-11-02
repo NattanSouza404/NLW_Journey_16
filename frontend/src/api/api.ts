@@ -1,64 +1,7 @@
-import type { Atividade } from "../model/Atividade";
+const PATH = "http://localhost:5093/api";
 
-const PATH = "http://localhost:5093/api/Atividade";
-
-export const consultarTodasAtividades = async () => {
-    const resposta = await fetch(PATH);
-
-    if (resposta.status !== 200){
-        throw new Error("Erro ao consultar atividades.");
+export const api = {
+    async fetch(endpoint: string, options?: RequestInit): Promise<Response> {
+        return fetch(`${PATH}/${endpoint}`, options);
     }
-
-    const atividades : Atividade[] = await resposta.json();
-
-    atividades.forEach(a => {
-        a.data = new Date(a.data);
-    });
-
-    return atividades;
-}
-
-export const adicionarAtividade = async (atividade: Atividade) => {
-    const option = {
-        method: 'POST',
-        headers:{'Content-Type': 'application/json'},
-        body: JSON.stringify(atividade)
-    }
-
-    const resposta = await fetch(PATH, option);
-
-    if (resposta.status !== 201) {
-        throw new Error("Erro ao adicionar atividade.");
-    }
-
-    return resposta.json();
-}
-
-export const atualizarAtividade = async (atividade: Atividade) => {
-    const option = {
-        method: 'PUT',
-        headers:{'Content-Type': 'application/json'},
-        body: JSON.stringify(atividade)
-    }
-
-    const resposta = await fetch(PATH, option);
-
-    if (resposta.status !== 204) {
-        throw new Error("Erro ao atualizar atividade.");
-    }
-
-    return atividade;
-}
-
-export const deletarAtividade = async (id: number) => {
-    const option = {
-        method: 'DELETE',
-        headers:{'Content-Type': 'application/json'},
-    }
-
-    const resposta = await fetch(`${PATH}/${id}`, option);
-
-    if (resposta.status !== 204) {
-        throw new Error("Erro ao deletar atividade");
-    }
-}
+};

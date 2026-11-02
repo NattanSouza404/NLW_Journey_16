@@ -1,16 +1,18 @@
-using Backend.Models;
+using Backend.DTOs;
 
 namespace Backend.Services
 {
     public interface IAtividadeService
     {
-        public Task<IEnumerable<Atividade>> ConsultarTodosAsync();
+        public Task<IEnumerable<AtividadeDTO>> ConsultarTodosAsync();
 
-        public Task<Atividade?> ConsultarPorIdAsync(int id);
+        public Task<AtividadeDTO?> ConsultarPorIdAsync(int id);
         
-        public Task<Atividade> CriarAsync(Atividade atividade);
+        public Task<AtividadeDTO> CriarAsync(CriarAtividadeDTO dto);
 
-        public Task<bool> AtualizarAsync(Atividade atividade);
+        public Task<bool> AtualizarAsync(int id, AtualizarAtividadeDTO dto);
+
+        public Task<bool> AtualizarFinalizacaoAsync(int id);
 
         public Task<bool> DeletarAsync(int id);
     }

@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Backend.Models;
+using Backend.DTOs;
 using Backend.Services;
 
-//using System.Web.Mvc;
-//using System.Web.Mvc.Ajax;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
@@ -21,36 +15,46 @@ namespace Backend.Controllers
         [HttpGet]
         public async Task<IActionResult> ConsultarAtividades()
         {
-            IEnumerable<Atividade> atividades = await _service.ConsultarTodosAsync();
-
-            return Ok(atividades); ;
+            return Ok(
+                await _service.ConsultarTodosAsync()
+            );
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> ConsultarPorId(int id)
         {
-            var atividade = await _service.ConsultarPorIdAsync(id);
-            return Ok(atividade);
+            return Ok(
+                await _service.ConsultarPorIdAsync(id)
+            );
         }
 
         [HttpPost]
-        public async Task<IActionResult> Adicionar([FromBody] Atividade atividade)
+        public async Task<IActionResult> Adicionar([FromBody] CriarAtividadeDTO atividade)
         {
-            atividade.Data = DateTime.SpecifyKind(atividade.Data, DateTimeKind.Utc);
-
-            Atividade novaAtividade = await _service.CriarAsync(atividade);
+            AtividadeDTO novaAtividade = await _service.CriarAsync(atividade);
 
             return CreatedAtAction(nameof(ConsultarPorId), new { id = novaAtividade.Id }, novaAtividade);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Atualizar([FromBody] Atividade atividade)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Atualizar(int id, [FromBody] AtualizarAtividadeDTO atividade)
         {
-            atividade.Data = DateTime.SpecifyKind(atividade.Data, DateTimeKind.Utc);
-
-            bool isAtualizado = await _service.AtualizarAsync(atividade);
+            bool isAtualizado = await _service.AtualizarAsync(id, atividade);
 
             if (!isAtualizado)
+            {
+                return BadRequest("Atividade não atualizada.");
+            }
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}/finalizacao")]
+        public async Task<IActionResult> AtualizarFinalizacao(int id)
+        {
+            bool isAtualizada = await _service.AtualizarFinalizacaoAsync(id);
+
+            if (!isAtualizada)
             {
                 return BadRequest("Atividade não atualizada.");
             }
