@@ -4,7 +4,7 @@ import styles from './ListaAtividades.module.css';
 
 type Props = {
   atividades: Atividade[];
-  concluirAtividade: (atividade: Atividade) => void;
+  concluirAtividade: (id: number) => void;
   confirmarDelecaoAtividade: (id: number) => Promise<void>;
   confirmarAtualizarNome: (atividade: Atividade) => Promise<void>;
 };
@@ -29,7 +29,7 @@ export const ListaAtividades = ({
         <AtividadeSalva
           key={atividade.id}
           atividade={atividade}
-          concluirAtividade={() => concluirAtividade(atividade)}
+          concluirAtividade={() => concluirAtividade(atividade.id)}
           confirmarDelecaoAtividade={() =>
             confirmarDelecaoAtividade(atividade.id)
           }
