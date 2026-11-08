@@ -1,14 +1,22 @@
 .fieldWrapper {
-  padding: 18px;
-  background-color: #09090B;
-  border: 1px solid #27272A;
-  border-radius: 8px;
-
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: 18px;
+
+  background-color: #09090B;
+  border: 1px solid #27272A;
+  border-radius: 8px;
 }
 
 .fieldWrapper:focus-within {
   outline: 2px solid yellowgreen;
+}
+
+.small {
+  padding: 8px;
+}
+
+.medium {
+  padding: 18px;
 }

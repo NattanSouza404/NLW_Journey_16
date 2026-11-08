@@ -1,4 +1,4 @@
-namespace Backend.DTOs
+namespace Backend.Application.DTOs
 {
     public record AtualizarAtividadeDTO
     {

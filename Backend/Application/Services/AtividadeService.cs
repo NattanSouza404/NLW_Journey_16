@@ -1,9 +1,9 @@
 using AutoMapper;
-using Backend.DTOs;
-using Backend.Models;
-using Backend.Repositories;
+using Backend.Application.DTOs;
+using Backend.Domain.Models;
+using Backend.Domain.Repositories;
 
-namespace Backend.Services
+namespace Backend.Application.Services
 {
     public class AtividadeService(
         IAtividadeRepository repository,
@@ -13,10 +13,12 @@ namespace Backend.Services
         private readonly IAtividadeRepository _repository = repository;
         private readonly IMapper _mapper = mapper;
         
-        public async Task<IEnumerable<AtividadeDTO>> ConsultarTodosAsync()
+        public async Task<IEnumerable<AtividadeDTO>> ConsultarTodosAsync(
+          FiltrosAtividadeDTO dto  
+        )
         {
             return _mapper.Map<IEnumerable<AtividadeDTO>>(
-                await _repository.ConsultarTodosAsync()
+                await _repository.ConsultarTodosAsync(dto.Nome)
             );
         }
 

@@ -1,7 +1,8 @@
-const PATH = "http://localhost:5093/api";
+import axios from "axios";
 
-export const api = {
-    async fetch(endpoint: string, options?: RequestInit): Promise<Response> {
-        return fetch(`${PATH}/${endpoint}`, options);
-    }
-};
+export const api = axios.create({
+  baseURL: "http://localhost:5093/api",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});

@@ -8,6 +8,8 @@ import { Header } from "./components/Header/Header";
 function App() {
   const {
     atividades,
+    filtros,
+    setFiltros,
     confirmarAtualizarNome,
     confirmarDelecaoAtividade,
     salvarAtividade,
@@ -19,7 +21,10 @@ function App() {
       <FormAdicionarAtividade onSubmit={salvarAtividade} />
 
       <main className={styles.main}>
-        <Header />
+        <Header
+          filtros={filtros}
+          setFiltros={setFiltros}
+        />
         <ListaAtividades
           atividades={atividades}
           concluirAtividade={concluirAtividade}

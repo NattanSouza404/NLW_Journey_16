@@ -1,15 +1,25 @@
 using Microsoft.EntityFrameworkCore;
 
-using Backend.Models;
-namespace Backend.Repositories
+using Backend.Domain.Repositories;
+using Backend.Domain.Models;
+
+namespace Backend.Infrastructure.Persistence.Repositories
 {
     public class AtividadeRepository(AppDbContext context) : IAtividadeRepository
     {
         private readonly AppDbContext _context = context;
 
-        public async Task<IEnumerable<Atividade>> ConsultarTodosAsync()
+        public async Task<IEnumerable<Atividade>> ConsultarTodosAsync(string? nome)
         {
-            return await _context.Atividades.OrderBy(a => a.Data).ToListAsync();
+            var query = _context.Atividades.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(nome))
+            {
+                // ILike no PostgreSQL faz busca case-insensitive!
+                query = query.Where(a => EF.Functions.ILike(a.Nome, $"%{nome}%"));
+            }
+
+            return await query.ToListAsync();
         }
 
         public async Task<Atividade?> ConsultarPorIdAsync(int id)

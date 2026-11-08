@@ -4,3 +4,7 @@ export interface Atividade {
     data: Date;
     finalizada: boolean
 }
+
+export interface FiltrosAtividade {
+    nome: string;
+}

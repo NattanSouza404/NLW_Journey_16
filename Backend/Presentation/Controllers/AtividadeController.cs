@@ -1,9 +1,9 @@
-using Backend.DTOs;
-using Backend.Services;
+using Backend.Application.DTOs;
+using Backend.Application.Services;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace Backend.Controllers
+namespace Backend.Presentation.Controllers
 {
 
     [ApiController]
@@ -13,10 +13,12 @@ namespace Backend.Controllers
         private readonly IAtividadeService _service = service;
 
         [HttpGet]
-        public async Task<IActionResult> ConsultarAtividades()
+        public async Task<IActionResult> ConsultarAtividades([FromQuery] string? nome)
         {
             return Ok(
-                await _service.ConsultarTodosAsync()
+                await _service.ConsultarTodosAsync(
+                    new(){Nome = nome}
+                )
             );
         }
 
