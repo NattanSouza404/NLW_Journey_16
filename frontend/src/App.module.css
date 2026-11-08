@@ -4,13 +4,6 @@
   margin: auto;
 }
 
-.titulo {
-  text-align: center;
-  font-weight: 600;
-  font-size: 24px;
-  margin-bottom: 24px;
-}
-
 .main {
   margin-top: 32px;
 }
@@ -25,9 +18,5 @@
   .main {
     margin-top: 0;
     flex: 1;
-  }
-
-  .titulo {
-    text-align: left;
   }
 }

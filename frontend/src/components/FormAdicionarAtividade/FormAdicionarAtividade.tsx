@@ -9,6 +9,7 @@ import { SelecaoHoras } from "../SelecaoHoras";
 import styles from './FormAdicionarAtividade.module.css';
 import { Card } from "../ui/Card/Card";
 import { Button } from "../ui/Button/Button";
+import { InputWrapper } from "../ui/InputWrapper/InputWrapper";
 
 type Props = {
     onSubmit: (nome: string, data: string) => Promise<void> 
@@ -32,7 +33,7 @@ export const FormAdicionarAtividade = ({onSubmit: salvarAtividade}: Props) => {
             </Card>
 
             <div className={styles.fields}>
-                <div className={styles.fieldWrapper}>
+                <InputWrapper>
                     <IconeAtividade/>
                     <input
                         name="atividade"
@@ -42,21 +43,21 @@ export const FormAdicionarAtividade = ({onSubmit: salvarAtividade}: Props) => {
                         value={nome}
                         onChange={(e) => setNome(e.target.value)}
                     />
-                </div>
-                <div className={styles.fieldWrapper}>
+                </InputWrapper>
+                <InputWrapper>
                     <IconeData/>
                     <SelecaoDias
                         dia={dia}
                         setDia={setDia}
                     />
-                </div>
-                <div className={styles.fieldWrapper}>
+                </InputWrapper>
+                <InputWrapper>
                     <IconeHora/>
                     <SelecaoHoras
                         hora={hora}
                         setHora={setHora}
                     />
-                </div>
+                </InputWrapper>
             </div>
             <Button type="submit">Salvar atividade</Button>
         </form>
