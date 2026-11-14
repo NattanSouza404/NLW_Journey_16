@@ -15,8 +15,8 @@ namespace Backend.Infrastructure.Persistence.Repositories
 
             if (!string.IsNullOrWhiteSpace(nome))
             {
-                // ILike no PostgreSQL faz busca case-insensitive!
                 query = query.Where(a => EF.Functions.ILike(a.Nome, $"%{nome}%"));
+                query = query.
             }
 
             return await query.ToListAsync();
