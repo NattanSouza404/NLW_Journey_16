@@ -16,7 +16,6 @@ namespace Backend.Infrastructure.Persistence.Repositories
             if (!string.IsNullOrWhiteSpace(nome))
             {
                 query = query.Where(a => EF.Functions.ILike(a.Nome, $"%{nome}%"));
-                query = query.
             }
 
             return await query.ToListAsync();
