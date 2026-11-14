@@ -1,0 +1,38 @@
+name: Backend CI
+
+on:
+  push:
+    paths:
+      - 'Backend/**'
+      - 'Backend.Tests/**'
+      - 'NLW_Journey_16.sln'
+      - '.github/workflows/backend.yml'
+  pull_request:
+    paths:
+      - 'Backend/**'
+      - 'Backend.Tests/**'
+      - 'NLW_Journey_16.sln'
+      - '.github/workflows/backend.yml'
+
+jobs:
+  backend-ci:
+    name: Build & Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore NLW_Journey_16.sln
+
+      - name: Build
+        run: dotnet build NLW_Journey_16.sln --no-restore --configuration Release
+
+      - name: Run Tests
+        run: dotnet test NLW_Journey_16.sln --no-build --configuration Release --verbosity normal

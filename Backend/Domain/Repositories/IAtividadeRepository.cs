@@ -1,10 +1,10 @@
-using Backend.Models;
+using Backend.Domain.Models;
 
-namespace Backend.Repositories
+namespace Backend.Domain.Repositories
 {
     public interface IAtividadeRepository
     {
-        Task<IEnumerable<Atividade>> ConsultarTodosAsync();
+        Task<IEnumerable<Atividade>> ConsultarTodosAsync(string? nome);
 
         Task<Atividade?> ConsultarPorIdAsync(int id);
 

@@ -6,22 +6,25 @@ import {
   consultarTodasAtividades,
   deletarAtividade,
 } from "../services/AtividadeService";
-import type { Atividade } from "../model/Atividade";
+import type { Atividade, FiltrosAtividade } from "../model/Atividade";
 
 export const useAtividades = () => {
   const [atividades, setAtividades] = useState<Atividade[]>([]);
+  const [filtros, setFiltros] = useState<FiltrosAtividade>(
+    { nome: ""}
+  );
 
   useEffect(() => {
-    const obterDados = async () => {
-      const dados = await consultarTodasAtividades();
-
+    const timeoutId = setTimeout(async () => {
+      const dados = await consultarTodasAtividades(filtros);
+      
       if (dados !== undefined) {
         setAtividades(dados);
       }
-    };
+    }, 300);
 
-    obterDados();
-  }, []);
+    return () => clearTimeout(timeoutId);
+  }, [filtros]);
 
   const salvarAtividade = async (nome: string, data: string) => {
     const novaAtividade: Atividade = {
@@ -102,6 +105,8 @@ export const useAtividades = () => {
 
   return {
     atividades,
+    filtros,
+    setFiltros,
     confirmarAtualizarNome,
     confirmarDelecaoAtividade,
     salvarAtividade,

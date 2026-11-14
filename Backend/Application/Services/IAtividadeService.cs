@@ -1,10 +1,10 @@
-using Backend.DTOs;
+using Backend.Application.DTOs;
 
-namespace Backend.Services
+namespace Backend.Application.Services
 {
     public interface IAtividadeService
     {
-        public Task<IEnumerable<AtividadeDTO>> ConsultarTodosAsync();
+        public Task<IEnumerable<AtividadeDTO>> ConsultarTodosAsync(FiltrosAtividadeDTO dto);
 
         public Task<AtividadeDTO?> ConsultarPorIdAsync(int id);
         

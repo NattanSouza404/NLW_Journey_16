@@ -1,6 +1,6 @@
-using Backend.Models;
+using Backend.Domain.Models;
 
-namespace Backend.Tests.Models;
+namespace Backend.Tests.Domain.Models;
 
 public class AtividadeTest
 {

@@ -1,7 +1,7 @@
-using Backend.Models;
+using Backend.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Backend.Repositories
+namespace Backend.Infrastructure.Persistence.Repositories
 {
     public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {

@@ -1,13 +1,13 @@
 import styles from "./Card.module.css";
 
 export const Card = ({
-  children,
   id,
   className,
+  children,
 }: {
-  children: React.ReactNode;
   id?: string;
   className?: string;
+  children: React.ReactNode;
 }) => {
   return (
     <div id={id} className={`${styles.card} ${className || ""}`}>
