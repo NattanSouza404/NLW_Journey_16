@@ -1,4 +1,5 @@
 import type { FiltrosAtividade } from "../../model/Atividade";
+import { IconePesquisa } from "../ui/icons/IconePesquisa";
 import { InputWrapper } from "../ui/InputWrapper/InputWrapper";
 import styles from "./Header.module.css";
 
@@ -21,6 +22,7 @@ export const Header = ({ filtros, setFiltros }: Props) => {
                 nome: e.target.value
             })}
         />
+        <IconePesquisa/>
       </InputWrapper>
     </header>
   );
